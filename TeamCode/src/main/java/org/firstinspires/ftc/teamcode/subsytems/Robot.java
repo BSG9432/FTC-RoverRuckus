@@ -91,4 +91,20 @@ public class Robot {
         return (gravity.zAccel);
 
     }
+
+    public double getHeading() {
+        Orientation angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+
+        return (angles.firstAngle);
+    }
+
+    public double getError(double targetAngle){
+        double angleError = 0;
+
+        angleError = (targetAngle - getHeading());
+        angleError -= (360*Math.floor(0.5+((angleError)/360.0)));
+
+        return angleError;
+
+    }
 }
