@@ -26,10 +26,10 @@ import org.firstinspires.ftc.teamcode.subsytems.Intake;
 
 import java.util.ArrayList;
 import java.util.Locale;
-public class Robot{
+public class Robot {
     public DcMotor frontRight, frontLeft, backRight, backLeft, intake;
-    public DcMotor[] motors =  {frontRight, frontLeft, backRight, backLeft, intake};
-    public String[] motorNames =  {"frontRight", "frontLeft", "backRight", "backLeft", "intake"};
+    public DcMotor[] motors = {frontRight, frontLeft, backRight, backLeft, intake};
+    public String[] motorNames = {"frontRight", "frontLeft", "backRight", "backLeft", "intake"};
     public GoldAlignDetector detector;
     public Telemetry telemetry;
     public HardwareMap hMap;
@@ -37,30 +37,31 @@ public class Robot{
     public Orientation angles;
     public Acceleration gravity;
 
-   // public static Intake intakeSystem;
+
+    // public static Intake intakeSystem;
 
     //TODO: Modify COUNTS_PER_INCH to VEX mech wheels
-    static final double     COUNTS_PER_MOTOR_REV    = 1120 ;    // eg: TETRIX Motor Encoder
-    static final double     DRIVE_GEAR_REDUCTION    = 1.0 ;     // This is < 1.0 if geared UP
-    static final double     WHEEL_DIAMETER_INCHES   = 4.0 ;     // VEX WHEEL
-    static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
+    static final double COUNTS_PER_MOTOR_REV = 1120;    // eg: TETRIX Motor Encoder
+    static final double DRIVE_GEAR_REDUCTION = 1.0;     // This is < 1.0 if geared UP
+    static final double WHEEL_DIAMETER_INCHES = 4.0;     // VEX WHEEL
+    static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
-   // private static final double TICKS_PER_INCH = 1120 * (16. / 24.) / (Math.PI * 4.0);
+    // private static final double TICKS_PER_INCH = 1120 * (16. / 24.) / (Math.PI * 4.0);
     private static final double COUNTS_PER_CM = COUNTS_PER_INCH / 2.54;
     private static final double ENCODER_DRIVE_POWER = 0.3;
     private ElapsedTime time = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS); //time in ms
 
 
     //Constructor
-    public Robot(){
+    public Robot() {
 
     }
 
-    public void init(HardwareMap ahMap){
+    public void init(HardwareMap ahMap) {
         hMap = ahMap;
 
         //cool but extra way to init motor names
-        for(int i = 0; i < motors.length; i++) {
+        for (int i = 0; i < motors.length; i++) {
             motors[i] = hMap.dcMotor.get(motorNames[i]);
         }
         /*
@@ -75,14 +76,19 @@ public class Robot{
         //set direction (later)
 
 
-
+    }
+    public void stopMotorMovement(){
+        frontRight.setPower(0);
+        frontLeft.setPower(0);
+        backRight.setPower(0);
+        backLeft.setPower(0);
+        intake.setPower(0);
 
     }
 
-    public double getGravity (){
-        gravity=imu.getGravity();
-        return(gravity.zAccel);
+    public double getGravity() {
+        gravity = imu.getGravity();
+        return (gravity.zAccel);
 
     }
-
 }
