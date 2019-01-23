@@ -75,6 +75,8 @@ public class ConceptSoundsASJava extends LinearOpMode {
     // Declare OpMode members.
     private boolean goldFound;      // Sound file present flags
     private boolean silverFound;
+    private boolean erroFound;
+    private boolean trollFound;
 
     private boolean isX = false;    // Gamepad button state variables
     private boolean isB = false;
@@ -88,6 +90,8 @@ public class ConceptSoundsASJava extends LinearOpMode {
         // Determine Resource IDs for sounds built into the RC application.
         int silverSoundID = hardwareMap.appContext.getResources().getIdentifier("silver", "raw", hardwareMap.appContext.getPackageName());
         int goldSoundID   = hardwareMap.appContext.getResources().getIdentifier("gold",   "raw", hardwareMap.appContext.getPackageName());
+        int erroID = hardwareMap.appContext.getResources().getIdentifier("erro", "raw", hardwareMap.appContext.getPackageName());
+        int trollID =  hardwareMap.appContext.getResources().getIdentifier("troll", "raw", hardwareMap.appContext.getPackageName());
 
         // Determine if sound resources are found.
         // Note: Preloading is NOT required, but it's a good way to verify all your sounds are available before you run.
@@ -97,9 +101,18 @@ public class ConceptSoundsASJava extends LinearOpMode {
         if (silverSoundID != 0)
             silverFound = SoundPlayer.getInstance().preload(hardwareMap.appContext, silverSoundID);
 
+        if(erroID != 0)
+            erroFound = SoundPlayer.getInstance().preload(hardwareMap.appContext, erroID);
+
+        if(trollID != 0)
+            trollFound = SoundPlayer.getInstance().preload(hardwareMap.appContext,trollID );
+
         // Display sound status
         telemetry.addData("gold resource",   goldFound ?   "Found" : "NOT found\n Add gold.wav to /src/main/res/raw" );
         telemetry.addData("silver resource", silverFound ? "Found" : "Not found\n Add silver.wav to /src/main/res/raw" );
+        telemetry.addData("erro resource", erroFound ? "Found" : "Not found \n Add erro.wav to src/main/res/raw");
+        telemetry.addData("troll resource", trollFound ? "Found" : "Not found \n Add troll.wav to src/main/res/raw");
+
 
         // Wait for the game to start (driver presses PLAY)
         telemetry.addData(">", "Press Start to continue");
@@ -113,15 +126,22 @@ public class ConceptSoundsASJava extends LinearOpMode {
         while (opModeIsActive()) {
 
             // say Silver each time gamepad X is pressed (This sound is a resource)
+            /*
             if (silverFound && (isX = gamepad1.x) && !wasX) {
                 SoundPlayer.getInstance().startPlaying(hardwareMap.appContext, silverSoundID);
                 telemetry.addData("Playing", "Resource Silver");
                 telemetry.update();
             }
+            */
+            if(erroFound && (isX = gamepad1.x) && !wasX){
+                SoundPlayer.getInstance().startPlaying(hardwareMap.appContext, erroID);
+                telemetry.addData("Playing", "erro!");
+                telemetry.update();
+            }
 
             // say Gold each time gamepad B is pressed  (This sound is a resource)
-            if (goldFound && (isB = gamepad1.b) && !WasB) {
-                SoundPlayer.getInstance().startPlaying(hardwareMap.appContext, goldSoundID);
+            if (trollFound && (isB = gamepad1.b) && !WasB) {
+                SoundPlayer.getInstance().startPlaying(hardwareMap.appContext, trollID);
                 telemetry.addData("Playing", "Resource Gold");
                 telemetry.update();
             }

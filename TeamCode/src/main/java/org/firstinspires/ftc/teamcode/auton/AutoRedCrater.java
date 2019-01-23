@@ -1,11 +1,13 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @Autonomous (name = "AutoRCrater")
+@Disabled
 public class AutoRedCrater extends LinearOpMode { //Facing the Crater WORK IN PROGRESS
 /* Um so this one is um facing the crater to turn into the depot
 and then like go to the crater but like it's tentative

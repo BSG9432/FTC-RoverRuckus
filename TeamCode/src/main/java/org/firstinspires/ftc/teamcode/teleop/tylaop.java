@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp(name = "tylaop", group = "kms")
+@Disabled
 
 public class tylaop extends OpMode {
 

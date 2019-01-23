@@ -8,9 +8,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.AutoTransitioner;
 
-@Autonomous (name = "AutoCraterStraight")//If we're on the crater side; it'll just go straight
+@Autonomous (name = "Straight")//If we're on the crater side; it'll just go straight
 @Disabled
-public class AutoCraterStraight extends LinearOpMode {
+public class StraightyBoi extends LinearOpMode {
     public DcMotor frontRight;
     public DcMotor frontLeft;
     public DcMotor backRight;
@@ -29,11 +29,13 @@ public class AutoCraterStraight extends LinearOpMode {
         backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        hangyboi = hardwareMap.servo.get ("hangyboi");
+
+
         lift = hardwareMap.dcMotor.get ("lift");
         phoneServo = hardwareMap.servo.get ("phoneServo");
+        hangyboi = hardwareMap.servo.get ("hangyboi");
 
-        AutoTransitioner.transitionOnStop(this, "Teleop");
+        AutoTransitioner.transitionOnStop(this, "tylaop");
         waitForStart();
         frontRight.setPower(.5);
         backRight.setPower(.5);

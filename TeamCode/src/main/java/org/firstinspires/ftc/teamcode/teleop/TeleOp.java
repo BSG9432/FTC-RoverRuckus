@@ -2,11 +2,13 @@ package org.firstinspires.ftc.teamcode;
 
 //import com.disnodeteam.dogecv.CameraViewDisplay;
 //import com.disnodeteam.dogecv.detectors.roverrukus.GoldAlignDetector;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp (name = "Teleop")//THIS IS THE RIGHT TELE OP
+@Disabled
 public class TeleOp extends OpMode {
     public DcMotor frontRight;
     public DcMotor frontLeft;

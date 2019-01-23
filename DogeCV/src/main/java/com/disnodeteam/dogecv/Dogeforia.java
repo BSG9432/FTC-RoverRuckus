@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Surface;
 
 import com.disnodeteam.dogecv.detectors.DogeCVDetector;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ThreadPool;
 import com.vuforia.CameraDevice;
 import com.vuforia.Frame;
@@ -48,7 +49,6 @@ import static com.vuforia.Vuforia.setFrameFormat;
 /**
  * An implementation of Vuforia intended to be cross-compatible with OpenCV (and DogeCV by extension)
  */
-
 public class Dogeforia extends VuforiaLocalizerImpl {
     DogeCVDetector detector;
     DrawViewSource displayView;
