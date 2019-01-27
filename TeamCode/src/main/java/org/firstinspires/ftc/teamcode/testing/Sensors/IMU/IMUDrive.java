@@ -77,7 +77,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 //Doesn't work
-@Autonomous(name="Pushbot: Auto Drive By IMU", group="Pushbot")
+@Autonomous(name="Pls Jet" +
+        ": Auto Drive By IMU", group="Pushbot")
 public class IMUDrive extends LinearOpMode {
 
     /* Declare OpMode members. */
@@ -88,6 +89,7 @@ public class IMUDrive extends LinearOpMode {
     public DcMotor intakeLift;
     public DcMotor pivot;
     public DcMotor hangLift;
+    public DcMotor intake;
     public Servo servoboi;
     public BNO055IMU imu;
 
@@ -121,6 +123,7 @@ public class IMUDrive extends LinearOpMode {
         intakeLift = hardwareMap.dcMotor.get("intakeLift");
         pivot = hardwareMap.dcMotor.get("pivot");
         hangLift = hardwareMap.dcMotor.get("hangLift");
+        intake = hardwareMap.dcMotor.get("intake");
         servoboi = hardwareMap.servo.get("servoboi");
         frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -160,10 +163,12 @@ public class IMUDrive extends LinearOpMode {
 
 
         // make sure the imu is calibrated before continuing
+        /*
         while (!isStopRequested() && !imu.isGyroCalibrated()) {
             sleep(50);
             idle();
         }
+        */
 
         telemetry.addData(">", "Robot Ready.");    //
         telemetry.update();
@@ -183,16 +188,17 @@ public class IMUDrive extends LinearOpMode {
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
         // Put a hold after each turn
-        imuDrive(DRIVE_SPEED, 48.0, 0.0);    // Drive FWD 48 inches
+     //   imuDrive(DRIVE_SPEED, 48.0, 0.0);    // Drive FWD 48 inches
         imuTurn( TURN_SPEED, -45.0);         // Turn  CCW to -45 Degrees
         imuHold( TURN_SPEED, -45.0, 0.5);    // Hold -45 Deg heading for a 1/2 second
         imuDrive(DRIVE_SPEED, 12.0, -45.0);  // Drive FWD 12 inches at 45 degrees
+        /*
         imuTurn( TURN_SPEED,  45.0);         // Turn  CW  to  45 Degrees
         imuHold( TURN_SPEED,  45.0, 0.5);    // Hold  45 Deg heading for a 1/2 second
         imuTurn( TURN_SPEED,   0.0);         // Turn  CW  to   0 Degrees
         imuHold( TURN_SPEED,   0.0, 1.0);    // Hold  0 Deg heading for a 1 second
         imuDrive(DRIVE_SPEED,-48.0, 0.0);    // Drive REV 48 inches
-
+*/
         telemetry.addData("Path", "Complete");
         telemetry.update();
     }

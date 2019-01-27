@@ -5,8 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.TeleOp;
-@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "Player 1 - START")
-
+@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "One Man Drive Team")
 public class OnePlayerTele extends OpMode {
     public DcMotor frontRight;
     public DcMotor backRight;
@@ -54,10 +53,10 @@ public class OnePlayerTele extends OpMode {
         }
         //strafe left
         else if(gamepad1.right_stick_x < .1){
-            frontRight.setPower(-gamepad1.right_stick_x);
-            backRight.setPower(gamepad1.right_stick_x);
-            frontLeft.setPower(-gamepad1.right_stick_x);
-            backLeft.setPower(gamepad1.right_stick_x);
+            frontRight.setPower(gamepad1.right_stick_x);
+            backRight.setPower(-gamepad1.right_stick_x);
+            frontLeft.setPower(gamepad1.right_stick_x);
+            backLeft.setPower(-gamepad1.right_stick_x);
         }
         else {
             frontRight.setPower(G1rightStickY);
@@ -69,8 +68,8 @@ public class OnePlayerTele extends OpMode {
 
         //Right Side
         if (Math.abs(gamepad1.right_stick_y) > .1) {
-            frontRight.setPower(gamepad1.right_stick_y/2);
-            backRight.setPower(gamepad1.right_stick_y/2);
+            frontRight.setPower(gamepad1.right_stick_y);
+            backRight.setPower(gamepad1.right_stick_y);
         } else {
             frontRight.setPower(0);
             backRight.setPower(0);
@@ -78,8 +77,8 @@ public class OnePlayerTele extends OpMode {
 
         //Left Side
         if (Math.abs(gamepad1.left_stick_y) > .1) {
-            frontLeft.setPower(-gamepad1.left_stick_y/2);
-            backLeft.setPower(-gamepad1.left_stick_y/2);
+            frontLeft.setPower(-gamepad1.left_stick_y);
+            backLeft.setPower(-gamepad1.left_stick_y);
         } else {
             frontLeft.setPower(0);
             backLeft.setPower(0);
@@ -96,22 +95,24 @@ public class OnePlayerTele extends OpMode {
         }
 
         if(gamepad1.right_trigger > .1){ // GO FORWARD
-            intakeLift.setPower(.5);
+            intakeLift.setPower(.7);
 
         }
         else if(gamepad1.left_trigger > .1){ // GO BACK
-            intakeLift.setPower(-.5);
+            intakeLift.setPower(-.7);
         }
         else {
             intakeLift.setPower(0);
         }
         if(gamepad1.b){  //OUT
-            servoboi.setPosition(0);
+            servoboi.setPosition(1);
             telemetry.addData("servoPos: ", servoboi.getPosition());
             telemetry.update();
         }
         else {
-            servoboi.setPosition(1);
+            servoboi.setPosition(0);
+            telemetry.addData("servoPos: ", servoboi.getPosition());
+            telemetry.update();
         }//IN
 
         if(gamepad1.right_bumper){//UP
@@ -134,5 +135,5 @@ public class OnePlayerTele extends OpMode {
         }
 
 
-}
+    }
 }

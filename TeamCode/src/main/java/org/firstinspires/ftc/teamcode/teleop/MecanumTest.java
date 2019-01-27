@@ -16,6 +16,7 @@ public class MecanumTest extends OpMode {
     public DcMotor intakeLift;
     public DcMotor pivot;
     public DcMotor hangLift;
+    public DcMotor intake;
     public Servo servoboi;
     public void init() {
 
@@ -27,12 +28,14 @@ public class MecanumTest extends OpMode {
         pivot = hardwareMap.dcMotor.get("pivot");
         hangLift = hardwareMap.dcMotor.get("hangLift");
         servoboi = hardwareMap.servo.get("servoboi");
+        intake = hardwareMap.dcMotor.get("intake");
         frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         pivot.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         hangLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
 
@@ -127,6 +130,16 @@ public class MecanumTest extends OpMode {
 
         }
         */
+        if(gamepad2.right_bumper){
+            intake.setPower(-.75);
+        }
+        else if(gamepad2.left_bumper){
+            intake.setPower(.75);
+        }
+        else {
+            intake.setPower(0);
+        }
+
         if(gamepad1.dpad_up) {  //YEET UP
             hangLift.setPower(1);
         }
@@ -160,8 +173,6 @@ public class MecanumTest extends OpMode {
         else {
             servoboi.setPosition(0);
         }
-
-
 
 
         if(gamepad2.y){

@@ -104,18 +104,14 @@ public class IMUTurn extends LinearOpMode {
             telemetry.addData("3 correction", correction);
             telemetry.update();
 
-            frontLeft.setPower(-power + correction);
-            backLeft.setPower(-power + correction);
-            frontRight.setPower(-power);
-            backRight.setPower(-power);
+
 
             // We record the sensor values because we will test them in more than
             // one place with time passing between those places. See the lesson on
             // Timing Considerations to know why.
             rotate(90, .3);
             sleep(5000);
-            rotate(0, .3);
-            rotate(360, .3 );
+
 
 
         }
